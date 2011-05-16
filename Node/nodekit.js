@@ -8,17 +8,16 @@ require.paths.unshift('../Shared/');
 // Load requirements.
 var http = require('http'),  
     io = require('socket.io')
-    router = require("router");
+    router = require("router"),
+    connect = require('connect');
 
 // Load config file.
 var config = require('config').getConfig();
 
 // Set up http server.
-var server = http.createServer(function (request, result) { 
-//  result.writeHeader(200, {'Content-Type': 'text/html'}); 
-//  result.writeBody('<h1>TermKit</h1>');
-//  result.finish(); 
-});
+var server = connect.createServer(
+    connect.static(__dirname+'/../HTML')
+)
 
 server.listen(2222);
 
