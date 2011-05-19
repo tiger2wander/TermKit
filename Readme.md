@@ -37,10 +37,11 @@ Addresses following problems:
 ## How to use:
 
 1. [Install node.js and npm](http://howtonode.org/how-to-install-nodejs).
-2. install node-mime: `npm install mime`
-3. Clone the TermKit repository: `git clone git@github.com:unconed/TermKit.git --recursive`
-4. Run the NodeKit daemon: `cd Node; node nodekit.js`
+3. Clone the TermKit repository
+2. Run `npm install` in the root directory
+4. Run the NodeKit daemon: `node Node/nodekit.js`
 5. Unzip and run the Mac app in Build/TermKit.zip
+5bis: Alternatively, navigate to http://localhost:2222/ with your webkit-based browser
 
 *Tip:* Press ⌥⌘C to access the WebKit console.
 
