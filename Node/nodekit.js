@@ -1,7 +1,7 @@
+#!/usr/bin/env node
 var termkit = {
   version: 1,
 };
-require.paths.unshift('./socket.io-node/lib');
 require.paths.unshift('.');
 require.paths.unshift('../Shared/');
 
