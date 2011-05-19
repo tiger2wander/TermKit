@@ -19,7 +19,9 @@ var server = connect.createServer(
     connect.static(__dirname+'/../HTML')
 )
 
-server.listen(2222);
+server.listen(2222, function() {
+    console.log('server listening at http://localhost:2222');
+});
 
 // Set up WebSocket and handlers.
 var socket = io.listen(server); 
