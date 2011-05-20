@@ -37,8 +37,8 @@ Addresses following problems:
 ## How to use:
 
 1. [Install node.js and npm](http://howtonode.org/how-to-install-nodejs).
-3. Clone the TermKit repository
-2. Run `npm install` in the root directory
+2. Clone the TermKit repository
+3. Run `npm install` in the root directory
 4. Run the NodeKit daemon: `node Node/nodekit.js`
 5. Unzip and run the Mac app in Build/TermKit.zip
 5bis: Alternatively, navigate to http://localhost:2222/ with your webkit-based browser
