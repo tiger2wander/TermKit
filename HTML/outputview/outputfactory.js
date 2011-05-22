@@ -81,7 +81,7 @@ widgets.text.prototype = $.extend(new ov.outputNode(), {
     this.$contents.text(this.properties.contents);
     this.$element.data('controller', this);
     
-//    this.notify('view.callback', { raw: 'foo' });
+    this.notify('view.callback', { raw: 'foo' });
   },
   
 });
@@ -154,15 +154,15 @@ widgets.icon.prototype = $.extend(new ov.outputNode(), {
     // Set default icon.
     var image = new Image(),
         extension = (this.properties.stats.mode & 0x4000) ? '...' : this.properties.name.split('.').pop(),
-	  defaultUrl = '../Images';
+	  defaultUrl = ' ';
     
-    if( extension == '...' )
+    if( this.properties.stats.mode & 0x4000 )
     {
-        defaultUrl = '/folder.png';
+        defaultUrl += '../Images/folder.png';
     }
     else
     {
-        defaultUrl = '/file.png';
+        defaultUrl += '../Images/file.png';
     }
 
 
@@ -185,13 +185,13 @@ widgets.icon.prototype = $.extend(new ov.outputNode(), {
     // Set file-specific icon.
     var image = new Image(),
         path = this.properties.path + '/' + this.properties.name,
-	previewUrl = '../Images';
+	previewUrl = ' ';
 
         if( this.properties.stats.mode & 0x4000 )
 	{
-  	    previewUrl += '/folder.png';
+  	    previewUrl += '../Images/folder.png';
 	} else {
-   	    previewUrl += '/file.png';
+   	    previewUrl += '../Images/file.png';
 	}
 
     image.onload = function () {
@@ -329,7 +329,7 @@ widgets.list.prototype = $.extend(new ov.outputNode(), {
   
   // Return active markup for this widget.
   $markup: function () {
-    var $outputNode = $('<div class="termkitOutputNode widgetList termkitLimitHeight"><div class="children"></div></div>').data('controller', this);
+    var $outputNode = $('<div class="termkitOutputNode list termkitLimitHeight"><div class="children"></div></div>').data('controller', this);
     var that = this;
     return $outputNode;
   },
