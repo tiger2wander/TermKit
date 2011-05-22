@@ -81,7 +81,36 @@ widgets.text.prototype = $.extend(new ov.outputNode(), {
     this.$contents.text(this.properties.contents);
     this.$element.data('controller', this);
     
-    this.notify('view.callback', { raw: 'foo' });
+//    this.notify('view.callback', { raw: 'foo' });
+  },
+  
+});
+
+/**
+ * Widget: HTML output
+ */
+widgets.html = function (properties) {
+  
+  // Initialize node.
+  ov.outputNode.call(this, properties);
+  
+  this.$contents = this.$element.find('.contents');
+  this.updateElement();
+};
+
+widgets.html.prototype = $.extend(new ov.outputNode(), {
+  
+  // Return active markup for this widget.
+  $markup: function () {
+    var $outputNode = $('<div class="termkitOutputNode widgetHTML"><div class="contents"></div></div>').data('controller', this);
+    var that = this;
+    return $outputNode;
+  },
+
+  // Update markup to match.
+  updateElement: function () {
+    this.$contents.html(this.properties.contents);
+    this.$element.data('controller', this);
   },
   
 });
@@ -125,7 +154,17 @@ widgets.icon.prototype = $.extend(new ov.outputNode(), {
     // Set default icon.
     var image = new Image(),
         extension = (this.properties.stats.mode & 0x4000) ? '...' : this.properties.name.split('.').pop(),
-        defaultUrl = 'termkit-icon-default:///' + encodeURIComponent(extension);
+	  defaultUrl = '../Images';
+    
+    if( extension == '...' )
+    {
+        defaultUrl = '/folder.png';
+    }
+    else
+    {
+        defaultUrl = '/file.png';
+    }
+
 
     image.onload = function () {
       callback && callback();
@@ -146,7 +185,14 @@ widgets.icon.prototype = $.extend(new ov.outputNode(), {
     // Set file-specific icon.
     var image = new Image(),
         path = this.properties.path + '/' + this.properties.name,
-        previewUrl = 'termkit-icon-preview:///' + encodeURIComponent(path);
+	previewUrl = '../Images';
+
+        if( this.properties.stats.mode & 0x4000 )
+	{
+  	    previewUrl += '/folder.png';
+	} else {
+   	    previewUrl += '/file.png';
+	}
 
     image.onload = function () {
       this.noDefault = true;
@@ -283,7 +329,7 @@ widgets.list.prototype = $.extend(new ov.outputNode(), {
   
   // Return active markup for this widget.
   $markup: function () {
-    var $outputNode = $('<div class="termkitOutputNode list termkitLimitHeight"><div class="children"></div></div>').data('controller', this);
+    var $outputNode = $('<div class="termkitOutputNode widgetList termkitLimitHeight"><div class="children"></div></div>').data('controller', this);
     var that = this;
     return $outputNode;
   },
@@ -360,5 +406,67 @@ widgets.code.prototype = $.extend(new widgets.text(), {
   
 });
 
+/**
+ * Widget: Progress bar
+ */
+widgets.progress = function (properties) {
+  
+  // Initialize node.
+  ov.outputNode.call(this, properties);
+
+  this.bar = new termkit.progress();
+  this.$element.append(this.bar.$element);
+
+  this.updateElement();
+};
+
+widgets.progress.prototype = $.extend(new ov.outputNode(), {
+  
+  // Return active markup for this widget.
+  $markup: function () {
+    var $outputNode = $('<div class="termkitOutputNode widgetProgress"></div>').data('controller', this);
+    return $outputNode;
+  },
+  
+  // Update markup to match.
+  updateElement: function () {
+
+    this.bar.min = this.properties.min || 0;
+    this.bar.max = this.properties.max || 100;
+    this.bar.value = this.properties.value || 0;
+
+    this.bar.updateElement();
+  },
+  
+});
+
+/**
+ * Widget: Spinner
+ */
+widgets.spinner = function (properties) {
+  
+  // Initialize node.
+  ov.outputNode.call(this, properties);
+
+  this.spinner = new termkit.spinner();
+  this.$element.append(this.spinner.$element);
+
+  this.updateElement();
+};
+
+widgets.spinner.prototype = $.extend(new ov.outputNode(), {
+  
+  // Return active markup for this widget.
+  $markup: function () {
+    var $outputNode = $('<div class="termkitOutputNode widgetSpinner"></div>').data('controller', this);
+    return $outputNode;
+  },
+  
+  // Update markup to match.
+  updateElement: function () {
+    this.spinner.updateElement();
+  },
+  
+});
 
 })(jQuery);
