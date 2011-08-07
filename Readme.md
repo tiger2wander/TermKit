@@ -41,7 +41,7 @@ Addresses following problems:
 3. Run `npm install` in the root directory
 4. Run the NodeKit daemon: `node Node/nodekit.js`
 5. Unzip and run the Mac app in Build/TermKit.zip
-5bis: Alternatively, navigate to http://localhost:2222/ with your webkit-based browser
+5bis. Alternatively, navigate to http://localhost:2222/ with your webkit-based browser
 
 *Tip:* Press ⌥⌘C to access the WebKit console.
 
