@@ -1,1 +1,1 @@
-../Node/socket.io-node/support/socket.io-client/
+../node_modules/socket.io/node_modules/socket.io-client

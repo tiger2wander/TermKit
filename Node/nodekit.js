@@ -2,8 +2,9 @@
 var termkit = {
   version: 1,
 };
-require.paths.unshift(__dirname);
-require.paths.unshift(__dirname+'/../Shared');
+//require.paths.unshift(__dirname);
+//require.paths.unshift(__dirname+'/../Shared');
+require(__dirname+'/../Shared/protocol');
 
 // Load requirements.
 var http = require('http'),  

@@ -39,7 +39,6 @@ exports.protocol.prototype = {
   },
   
   process: function (message) {
-
     // Version check.
     if (!this.agreed) {
       if (message.termkit == this.version) {
@@ -104,7 +103,7 @@ exports.protocol.prototype = {
         out.push(message);
         console.log.apply(console, out);
       }
-      this.connection.send(message);
+      this.connection.emit('message', message);
     }
   },
   
