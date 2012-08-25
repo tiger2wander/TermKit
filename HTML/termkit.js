@@ -7,8 +7,6 @@ var termkit = window.termkit || {};
 $(document).ready(function () {
 
   var client = new termkit.client();
-  window.tc = client;
-  window.s = client.protocol.connection;
   client.onConnect = function () {
     var shell = new termkit.client.shell(client, {}, function (shell) {
       var view = new termkit.commandView(shell);

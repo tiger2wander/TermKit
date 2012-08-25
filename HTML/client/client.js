@@ -13,9 +13,7 @@ var tc = termkit.client = function () {
   this.onDisconnect = function () {};
 
   // Set up socket with back-end.
-  // var s = this.socket = new io.Socket({host: 'localhost', port: 2222 }); 
   var s = this.socket = io.connect('http://localhost:2222'); 
-  // var s = this.socket = new io.Socket(); 
   
   // Use shared protocol handler with back-end.
   this.protocol = new termkit.protocol(this.socket, this);
@@ -26,9 +24,6 @@ var tc = termkit.client = function () {
   s.on('disconnect', function() {
     that.onDisconnect();
   }); 
-
-  // Open connection.
-  // s.connect();
 };
 
 tc.prototype = {

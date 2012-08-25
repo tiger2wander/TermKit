@@ -16,5 +16,5 @@ TermKit.app
 *.perspectivev3
 
 # modules managed by npm
-node_modules
+/node_modules
 

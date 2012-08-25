@@ -3,10 +3,10 @@
   "name": "termkit",
   "description": "a nextgen shellish webapp",
   "version": "0.0.0",
-  "homepage": "http://github.com/floby/TermKit",
+  "homepage": "http://github.com/tiger2wander/TermKit",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Floby/TermKit.git"
+    "url": "git://github.com/tiger2wander/TermKit.git"
   },
   "main": "Node/nodekit.js",
   "engines": {

@@ -2,14 +2,15 @@
 var termkit = {
   version: 1,
 };
-//require.paths.unshift(__dirname);
-//require.paths.unshift(__dirname+'/../Shared');
-require(__dirname+'/../Shared/protocol');
+
+process.env['NODE_PATH'] = __dirname;
+
+require('protocol');
 
 // Load requirements.
 var http = require('http'),  
     io = require('socket.io')
-    router = require("router"),
+    router = require('router'),
     connect = require('connect');
 
 // Load config file.
